@@ -46,9 +46,8 @@ function run(db) {
 		var $ = cheerio.load(body);
 
 		var elements = $("div.tile").each(function () {
-			
-			var bikeName = $(this.($("div.caption.h3"))).text().trim();
-			var imgUrl = 'http://a fake url for now';
+			var bikeName = $(this).find('div.caption h3').text().trim();
+			var imgUrl = $(this).find('picture.image img').attr('src');
 			updateRow(db, bikeName, imgUrl);
 		});
 
