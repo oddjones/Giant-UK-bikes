@@ -54,8 +54,6 @@ function run(db) {
 		});
 
 		readRows(db);
-
-		db.close();
 	});
 	// Use request to read in pages.
 	fetchPage("https://www.liv-cycling.com/gb/bikes", function (body) {
