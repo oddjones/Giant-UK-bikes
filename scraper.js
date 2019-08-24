@@ -49,7 +49,7 @@ function run(db) {
 			var bikeName = $(this).find('div.caption h3').text().trim();
 			var imgUrl = $(this).find('picture.image img').attr('src');
 			var price= $(this).find('div.caption p.prices').text();
-			var buyLink = $(this).find('a').attr('href');
+			var buyLink = 'https://giant-bicycles.com' + $(this).find('a').attr('href');
 			updateRow(db, bikeName, imgUrl, price, buyLink);
 		});
 
