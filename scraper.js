@@ -1,4 +1,4 @@
-// This is a template for a Node.js scraper on morph.io (https://morph.io)
+a// This is a template for a Node.js scraper on morph.io (https://morph.io)
 
 var cheerio = require("cheerio");
 var request = require("request");
@@ -23,7 +23,7 @@ function updateRow(db, bikeName, imgUrl) {
 function readRows(db) {
 	// Read some data.
 	db.each("SELECT rowid AS id, name FROM data", function(err, row) {
-		console.log(row.id + ": " + row.name);
+		console.log(row.id + ": " + row.bikeName +" | "+row.imgUrl);
 	});
 }
 
