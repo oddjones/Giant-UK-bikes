@@ -45,9 +45,9 @@ function run(db) {
 		// Use cheerio to find things in the page with css selectors.
 		var $ = cheerio.load(body);
 
-		var elements = $("div.tile div.caption h3").each(function () {
+		var elements = $("div.tile div.caption").each(function () {
 			
-			var bikeName = $(this).text().trim();
+			var bikeName = $(this).h3.text().trim();
 			var imgUrl = 'http://a fake url for now';
 			updateRow(db, bikeName, imgUrl);
 		});
