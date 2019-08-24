@@ -1,4 +1,4 @@
-a// This is a template for a Node.js scraper on morph.io (https://morph.io)
+// This is a template for a Node.js scraper on morph.io (https://morph.io)
 
 var cheerio = require("cheerio");
 var request = require("request");
