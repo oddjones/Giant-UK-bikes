@@ -13,10 +13,10 @@ function initDatabase(callback) {
 	});
 }
 
-function updateRow(db, value) {
+function updateRow(db, value, othervalue) {
 	// Insert some data.
 	var statement = db.prepare("INSERT INTO data VALUES (?)");
-	statement.run(value);
+	statement.run(value, othervalue);
 	statement.finalize();
 }
 
@@ -47,8 +47,8 @@ function run(db) {
 
 		var elements = $("div.tile div.caption h3").each(function () {
 			
-			var value = [$(this).text().trim(),'test'];
-			updateRow(db, value);
+			var value = $(this).text().trim();
+			updateRow(db, value, 'test');
 		});
 
 		readRows(db);
