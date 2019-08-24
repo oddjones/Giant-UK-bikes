@@ -45,8 +45,8 @@ function run(db) {
 		// Use cheerio to find things in the page with css selectors.
 		var $ = cheerio.load(body);
 
-		var elements = $("div.tile div.caption h3").each(function () {
-			var value = $(this).text().trim();
+		var elements = $("div.tile").each(function () {
+			var value = (this);
 			updateRow(db, value);
 		});
 
