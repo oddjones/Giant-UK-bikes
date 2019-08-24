@@ -41,11 +41,11 @@ function fetchPage(url, callback) {
 
 function run(db) {
 	// Use request to read in pages.
-	fetchPage("https://morph.io", function (body) {
+	fetchPage("https://www.giant-bicycles.com/gb/bikes", function (body) {
 		// Use cheerio to find things in the page with css selectors.
 		var $ = cheerio.load(body);
 
-		var elements = $("div.media-body span.p-name").each(function () {
+		var elements = $("div.tile div.caption h3").each(function () {
 			var value = $(this).text().trim();
 			updateRow(db, value);
 		});
