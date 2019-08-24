@@ -47,7 +47,7 @@ function run(db) {
 
 		var elements = $("div.tile div.caption").each(function () {
 			
-			var bikeName = $(this).h3.text().trim();
+			var bikeName = $(this.h3).text().trim();
 			var imgUrl = 'http://a fake url for now';
 			updateRow(db, bikeName, imgUrl);
 		});
