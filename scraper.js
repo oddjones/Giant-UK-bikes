@@ -8,15 +8,15 @@ function initDatabase(callback) {
 	// Set up sqlite database.
 	var db = new sqlite3.Database("data.sqlite");
 	db.serialize(function() {
-		db.run("CREATE TABLE IF NOT EXISTS data (name TEXT)");
+		db.run("CREATE TABLE IF NOT EXISTS data (bikeName TEXT, imgUrl TEXT)");
 		callback(db);
 	});
 }
 
-function updateRow(db, value) {
+function updateRow(db, bikeName, imgUrl) {
 	// Insert some data.
-	var statement = db.prepare("INSERT INTO data VALUES (?)");
-	statement.run(value);
+	var statement = db.prepare("INSERT INTO data (bikeName, imgUrl) VALUES (?, ?)");
+	statement.run(bikeName, imgUrl);
 	statement.finalize();
 }
 
@@ -47,8 +47,9 @@ function run(db) {
 
 		var elements = $("div.tile div.caption h3").each(function () {
 			
-			var value = $(this).text().trim();
-			updateRow(db, value);
+			var bikeName = $(this).text().trim();
+			var imgUrl = $('http://a fake url for now');
+			updateRow(db, bikeName, imgUrl);
 		});
 
 		readRows(db);
