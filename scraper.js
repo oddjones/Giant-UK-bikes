@@ -8,14 +8,14 @@ function initDatabase(callback) {
 	// Set up sqlite database.
 	var db = new sqlite3.Database("data.sqlite");
 	db.serialize(function() {
-		db.run("CREATE TABLE IF NOT EXISTS data (bikeName TEXT, imgUrl TEXT)");
+		db.run("CREATE TABLE IF NOT EXISTS data (name TEXT, imgUrl TEXT)");
 		callback(db);
 	});
 }
 
 function updateRow(db, bikeName, imgUrl) {
 	// Insert some data.
-	var statement = db.prepare("INSERT INTO data (bikeName, imgUrl) VALUES (?, ?)");
+	var statement = db.prepare("INSERT INTO data (name, imgUrl) VALUES (?, ?)");
 	statement.run(bikeName, imgUrl);
 	statement.finalize();
 }
@@ -23,7 +23,7 @@ function updateRow(db, bikeName, imgUrl) {
 function readRows(db) {
 	// Read some data.
 	db.each("SELECT rowid AS id, name FROM data", function(err, row) {
-		console.log(row.id + ": " + row.bikeName +" | "+row.imgUrl);
+		console.log(row.id + ": " + row.name +" | "+row.imgUrl);
 	});
 }
 
