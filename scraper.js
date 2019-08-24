@@ -16,7 +16,7 @@ function initDatabase(callback) {
 function updateRow(db, bikeName, imgUrl) {
 	// Insert some data.
 	var statement = db.prepare("INSERT INTO data (name, imgUrl) VALUES (?, ?)");
-	statement.run(bikeName, imgUrl);
+	statement.run([bikeName, imgUrl]);
 	statement.finalize();
 }
 
