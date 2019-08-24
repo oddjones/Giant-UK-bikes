@@ -57,6 +57,23 @@ function run(db) {
 
 		db.close();
 	});
+	// Use request to read in pages.
+	fetchPage("https://www.liv-cycling.com/gb/bikes", function (body) {
+		// Use cheerio to find things in the page with css selectors.
+		var $ = cheerio.load(body);
+
+		var elements = $("div.tile").each(function () {
+			var bikeName = $(this).find('div.caption h3').text().trim();
+			var imgUrl = $(this).find('picture.image img').attr('src');
+			var price= $(this).find('div.caption p.prices').text();
+			var buyLink = 'https://giant-bicycles.com' + $(this).find('a').attr('href');
+			updateRow(db, bikeName, imgUrl, price, buyLink);
+		});
+
+		readRows(db);
+
+		db.close();
+	});
 }
 
 initDatabase(run);
