@@ -59,7 +59,7 @@ function run(db) {
 		readRows(db);
 	});
 	// Use request to read in pages.
-	fetchPage("https://liv-cycling.com/gb/bikes", function (body) {
+	fetchPage("https://www.liv-cycling.com/gb/bikes", function (body) {
 		// Use cheerio to find things in the page with css selectors.
 		var $ = cheerio.load(body);
 
@@ -67,7 +67,7 @@ function run(db) {
 			var bikeName = $(this).find('div.caption h3').text().trim();
 			var imgUrl = $(this).find('picture.image img').attr('src');
 			var price= $(this).find('div.caption p.prices').text();
-			var buyLink = 'https://liv-cycling.com' + $(this).find('a').attr('href');
+			var buyLink = 'https://www.liv-cycling.com' + $(this).find('a').attr('href');
 			updateRow(db, bikeName, imgUrl, price, buyLink);
 		});
 
