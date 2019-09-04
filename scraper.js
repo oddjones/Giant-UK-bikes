@@ -40,6 +40,8 @@ function fetchPage(url, callback) {
 }
 
 function run(db) {
+	//clear existing data
+	db.run(`DELETE * FROM data`);
 	// Use request to read in pages.
 	fetchPage("https://www.giant-bicycles.com/gb/bikes", function (body) {
 		// Use cheerio to find things in the page with css selectors.
